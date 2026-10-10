@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next"
 import { site } from "@/data/site"
 import { publishedProducts } from "@/data/products"
 
+// Requerido por `output: export` (sitemap generado en build).
+export const dynamic = "force-static"
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = site.url
 

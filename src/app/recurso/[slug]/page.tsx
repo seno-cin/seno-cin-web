@@ -10,7 +10,11 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return publishedProducts().map((p) => ({ slug: p.slug }))
+  const params = publishedProducts().map((p) => ({ slug: p.slug }))
+  // `output: export` exige al menos un parámetro. Mientras el catálogo esté
+  // vacío se usa un placeholder: la página llama notFound() para slugs
+  // inexistentes, así que resuelve a 404 (nunca publica un recurso inventado).
+  return params.length > 0 ? params : [{ slug: "__placeholder__" }]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
