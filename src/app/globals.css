@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Paleta extraída del logo oficial de Seño Cin.
+   Violeta = color principal (enlaces, botones, acentos).
+   Coral / verde agua / amarillo = acentos, uso moderado. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-lila: #B695D6;
+  --color-lila-light: #EADCF5;
+  --color-lila-dark: #8F6FBA;
+  --color-rosa: #EF8FA0;
+  --color-rosa-light: #FCE3E7;
+  --color-rosa-dark: #C4606F;
+  --color-verde: #8FD4C1;
+  --color-verde-light: #DCF2EC;
+  --color-verde-dark: #4F9C86;
+  --color-amarillo: #F6CE72;
+  --color-amarillo-light: #FDF0D2;
+  --color-amarillo-dark: #A97C1F;
+  --color-crema: #FDFBFC;
+  --color-gris: #615D6B;
+  --color-gris-claro: #F4F2F6;
+  --color-texto: #33303A;
+  --color-texto-secondary: #615D6B;
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Plus Jakarta Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-crema);
+    color: var(--color-texto);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background-color: var(--color-lila-light);
+    color: var(--color-texto);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Hero — tamaño del titular y frase destacada (baked desde la variante aceptada) */
+.hero-title {
+  font-size: clamp(2.7rem, 6.4vw, 5rem);
+  letter-spacing: -0.03em;
+}
+
+.hero-accent {
+  color: var(--color-lila-dark);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
